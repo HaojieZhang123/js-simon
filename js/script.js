@@ -79,4 +79,14 @@ button.addEventListener('click', function(event){
 
     console.log(`risposte inserite: ${answers}`);
 
+    // confronto risposte con numeri
+    const result = compareAnswers(answers, numbers);
+    console.log(result);
+    if (result.length === 5){
+        message.innerHTML = 'Tutti i numeri inseriti sono corretti';
+    } else if (result.length > 0){
+        message.innerHTML = `Hai inserito ${result.length} numeri corretti: ${result}`;
+    } else {
+        message.innerHTML = 'Nessun numero inserito correttamente';
+    }
 })
