@@ -51,3 +51,10 @@ let interval = setInterval(() => {
         document.querySelector('#answers-form').classList.remove('d-none');
     }
 }, 1000);
+
+// generazione numeri randomici e salvataggio in array numbers
+for (let i = 0; i < 5; i++){
+    numbers.push(RNG(0,99));
+    numbersList.innerHTML += `<li>${numbers[i]}</li>`;
+}
+console.log(numbers);
