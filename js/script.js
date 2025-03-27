@@ -56,6 +56,16 @@ let interval = setInterval(() => {
 // generazione numeri randomici e salvataggio in array numbers
 for (let i = 0; i < 5; i++){
     numbers.push(RNG(1, 50));
+
+    // controllo che il numero generato non sia ripetuto, se si, cancello e rigenero
+    for (let j = 0; j < i; j++){
+        if (numbers[i] == numbers[j]){
+            numbers.splice(i, 1);
+            i--;
+            break;
+        }
+    }
+
     numbersList.innerHTML += `<li>${numbers[i]}</li>`;
 }
 
@@ -79,6 +89,16 @@ button.addEventListener('click', function(event){
         if (isNaN(answers[i]) || answers[i] == ''){
             message.innerHTML = 'Inserisci solo numeri!';
             return;
+        }
+    }
+
+    // controllo che le risposte inserite siano uniche
+    for (let i = 0; i < answers.length; i++){
+        for (let j = i + 1; j < answers.length; j++){
+            if (answers[i] == answers[j]){
+                message.innerHTML = 'Inserisci numeri unici!';
+                return;
+            }
         }
     }
 
