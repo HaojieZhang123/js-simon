@@ -58,3 +58,8 @@ for (let i = 0; i < 5; i++){
     numbersList.innerHTML += `<li>${numbers[i]}</li>`;
 }
 console.log(numbers);
+
+// cancellazione numeri dallo schermo allo scadere del countdown
+setTimeout(() => {
+    numbersList.innerHTML = '';
+}, (count * 1000));
