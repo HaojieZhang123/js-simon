@@ -11,6 +11,16 @@
 // stampo risultato in #message
 
 // inizio script
+
+// dichiarazione variabili
+const numbers = [];
+const answers = [];
+const countdown = document.getElementById('countdown');
+const numbersList = document.getElementById('numbers-list');
+const answersForm = document.getElementById('answers-form');
+const button = document.querySelector('button');
+const message = document.getElementById('message');
+
 // funzione generatore numeri randomici
 function RNG(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -29,3 +39,15 @@ function compareAnswers(answers, numbers){
     }
     return result;
 }
+
+// countdown
+let count = 10;
+let interval = setInterval(() => {
+   countdown.innerHTML = count;
+    count--;
+    if (count === 0){
+        clearInterval(interval);
+        countdown.innerHTML = count;
+        document.querySelector('#answers-form').classList.remove('d-none');
+    }
+}, 1000);
