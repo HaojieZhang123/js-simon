@@ -41,7 +41,7 @@ function compareAnswers(answers, numbers){
 }
 
 // countdown
-let count = 3;
+let count = 30;
 let interval = setInterval(() => {
     count--;
     countdown.innerHTML = count;
