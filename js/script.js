@@ -14,7 +14,6 @@
 
 // dichiarazione variabili
 const numbers = [];
-const answers = [];
 const countdown = document.getElementById('countdown');
 const instructions = document.getElementById('instructions');
 const numbersList = document.getElementById('numbers-list');
@@ -32,22 +31,20 @@ function compareAnswers(answers, numbers){
     for (let i = 0; i < answers.length; i++){
         for (let j = 0; j < numbers.length; j++){
             if (answers[i] == numbers[j]){
-                console.log(`Trovato il numero ${answers[i]}`);
                 result.push(answers[i]);
                 // dopo aver trovato il numero corrispondente lo rimuovo dall'array per evitare ripetizioni
                 numbers.splice(j, 1);
             }
         }
     }
-    console.log(`risultato funzione: ${result}`);
     return result;
 }
 
 // countdown
 let count = 3;
 let interval = setInterval(() => {
-   countdown.innerHTML = count;
     count--;
+    countdown.innerHTML = count;
     if (count === 0){
         clearInterval(interval);
         countdown.innerHTML = '';
@@ -61,7 +58,6 @@ for (let i = 0; i < 5; i++){
     numbers.push(RNG(1, 50));
     numbersList.innerHTML += `<li>${numbers[i]}</li>`;
 }
-console.log(`numeri generati: ${numbers}`);
 
 // cancellazione numeri dallo schermo allo scadere del countdown
 setTimeout(() => {
@@ -70,6 +66,7 @@ setTimeout(() => {
 
 button.addEventListener('click', function(event){
     event.preventDefault();
+    const answers = [];
     // salvataggio delle risposte in form nell'array answers
     answers.push(document.querySelector('input').value);
     answers.push(document.querySelector('input:nth-child(2)').value);
@@ -77,11 +74,18 @@ button.addEventListener('click', function(event){
     answers.push(document.querySelector('input:nth-child(4)').value);
     answers.push(document.querySelector('input:nth-child(5)').value);
 
+    // controllo che le rispsote inserite siano tutti numeri
+    for (let i = 0; i < answers.length; i++){
+        if (isNaN(answers[i]) || answers[i] == ''){
+            message.innerHTML = 'Inserisci solo numeri!';
+            return;
+        }
+    }
+
     console.log(`risposte inserite: ${answers}`);
 
     // confronto risposte con numeri
     const result = compareAnswers(answers, numbers);
-    console.log(result);
     if (result.length === 5){
         message.innerHTML = 'Tutti i numeri inseriti sono corretti';
     } else if (result.length > 0){
