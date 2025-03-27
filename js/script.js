@@ -76,13 +76,12 @@ setTimeout(() => {
 
 button.addEventListener('click', function(event){
     event.preventDefault();
+    
     const answers = [];
     // salvataggio delle risposte in form nell'array answers
-    answers.push(document.querySelector('input').value);
-    answers.push(document.querySelector('input:nth-child(2)').value);
-    answers.push(document.querySelector('input:nth-child(3)').value);
-    answers.push(document.querySelector('input:nth-child(4)').value);
-    answers.push(document.querySelector('input:nth-child(5)').value);
+    for (let i = 0; i < 5; i++){
+        answers.push(document.querySelector(`input:nth-child(${i + 1})`).value);
+    }
 
     // controllo che le rispsote inserite siano tutti numeri
     for (let i = 0; i < answers.length; i++){
